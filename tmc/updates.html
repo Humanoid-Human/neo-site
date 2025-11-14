@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMC | Updates</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>Block and Shape Updates</h1>
+    <hr>
+    <p>Suppose a block wants to know if it's being powered. How can it do this? The obvious solution is to have it check this every tick. However, this is a bad idea, because it would be incredibly laggy. Instead, Minecraft checks once, then remembers the state of the block. So a block, when placed, checks if it's powered, and then remembers that. Updates are a way of telling a block: <em>"hey, something's changed. you should check again."</em> (You could think of this as cache invalidation.)</p>
+    <p>There are (mostly) two types of updates: block and shape. A shape update is emitted whenever anything about a block changes. This includes stuff like trapdoors flipping, or water flowing. They're used for things like telling a torch to check if it still has support, and also triggering observers. Shape updates are always sent to the blocks directly adjacent to the source, and no further.</p>
+    <p>Block updates are primarily for redstone power. Unlike shape updates, block updates can be sent more than one block away from the source. For example, a repeater turning off will update the block in front of it, as well as all blocks around that one. In general, a redstone thing changing state will update all blocks that it could theoretically power. There are exceptions to this rule (notably redstone dust and torches, which will both update all blocks within 2 blocks taxicab distance).</p>
+    <p>The exact update range of each and every block is beyond the scope of this document (for now), but you can get by with some rules of thumb.</p>
+    <ol>
+      <li>A redstone powering thing will always block update <em>at least</em> everything it can power normally (ignoring <a href="qc">quasi-connectivity</a>)</li>
+      <li>A block being placed or removed updates (both types) all adjacent blocks. (Piston motions count for this.)</li>
+      <li>A block changing state always shape updates all adjacent blocks.</li>
+    </ol>
+    <hr>
+    <p>Return to <a href="home">home</a>.</p>
+  </body>
+</html>

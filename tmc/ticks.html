@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game ticks and subtick order</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>Game ticks and subtick order</h1>
+    <hr>
+    <p>Everything in Minecraft occurs in increments of 1/20th of a second, called ticks. Everything the game does is processed tick-by-tick. The order of events in the tick is as follows:</p>
+    <ul>
+      <li>Update world time</li>
+      <li>Scheduled ticks for blocks</li>
+      <li>Scheduled ticks for fluids</li>
+      <li>Raid handling</li>
+      <li>Mob spawning (natural, followed by spawner blocks)</li>
+      <li>Block events (pistons beginning to push, note blocks making sounds)</li>
+      <li>Entity handling</li>
+      <li>Block entities (pistons moving blocks, pistons finishing their push, hoppers ticking)</li>
+      <li>Player inputs</li>
+    </ul>
+    <hr>
+    <p>Return to <a href="home">home</a>.</p>
+  </body>
+</html>
