@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMC | Scheduled ticks</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>Scheduled ticks</h1>
+    <hr>
+    <p>Scheduled ticks, also known as tile ticks, are the method by which Minecraft remembers to do something in the future. They happen in their own <a href="ticks">tick phase</a>. Here's how they work:</p>
+    <p>there is a "world time" attribute, which indicates the number of ticks this Minecraft world has been running. When a tick is scheduled, the game stores the following data:</p>
+    <ul>
+        <li>The time when the tick should be executed</li>
+        <li>The location of the scheduled tick</li>
+        <li>The block that scheduled the tick</li>
+    </ul>
+    <p>When it comes time for a tick to be executed, the game first checks that the block in the location is of the correct type. This is so that, if you schedule a repeater tick and then use a piston to push an observer into place before it can fire, the observer doesn't take up the repeater's scheduled tick and fire early.</p>
+    <p>Then, it calls the block's scheduled tick function. This can do many different things; here's a non-comprehensive list, with the delay of the scheduled tick:</p>
+    <ul>
+        <li>Observers toggle their state (2gt)</li>
+        <li>Torches, repeaters, and comparators check for power (2/4/6/8gt for repeaters, 2gt otherwise)</li>
+        <li>Gravity blocks fall (1gt)</li>
+        <li>Scaffolding and leaves change their distance attribute (1gt)</li>
+        <li>Composters create bone meal (You know that little delay between the last layer of compost and then bone meal actually being formed? Yeah.) (20gt)</li>
+    </ul>
+    <p>Scheduled ticks, generally, happen in the order that they were scheduled. However, this is not always true in the case of repeaters and comparators. See the <a href="ttp">tile tick priority</a> page for more details.</p>
+    <hr>
+    <p>Return to <a href="../tmc">home</a>.</p>
+  </body>
+</html>
