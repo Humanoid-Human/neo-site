@@ -12,25 +12,25 @@
 
     <p>Pistons move blocks. How does this work?</p>
 
-    <h3>The basics</h3>
+    <h2>The basics</h2>
     <p>Pistons can only move twelve blocks at a time, total. Some blocks, such as all block entities, as well as things like obsidian and bedrock, are immovable. If a piston extending would cause it to push an immovable block, it will just not extend.</p>
     <p>Other blocks are crushable. This includes things like torches, redstone dust, moss, and pumpkins/melons. These do not contribute to the push limit, and will be destroyed if a piston pushes into them.</p>
     <p>Finally, some blocks are sticky: slime and honey. These blocks, when pushed, will also attempt to move the blocks around them. If the blocks around are immovable or crushable, they're counted as non-sticky and don't move with the slime. Pushing a normal block past a sticky block has no effect.</p>
 
-    <h3>Block 36</h3>
+    <h2>Block 36</h2>
     <p>Pistons move blocks by transforming them into the <code>moving_piston</code> block, which is sometimes referred to as "block 36" or B36.</p>
     <p>B36 is created at the destination position for the move. However, at first, its hitbox is offset by a full block. So the block itself is at the destination, but the hitbox (and rendered texture) are at the original location.</p>
     <p>B36 will then tick within the <em>block entity</em> <a href="ticks">tick phase</a>. During this time, they will move their hitbox and push entities, and once the hitbox arrives at the correct location, they'll turn themselves back into the original block.</p>
     <p>The piston itself is also transformed into a block entity: on push, there is a piston head block entity placed in front, while on retraction, there is a block entity in the shape of the whole piston placed where the piston is.</p>
     <p>This is why, for example, you might not be able to place blocks against a piston that is constantly moving back and forth.</p>
 
-    <h3>Tick phases</h3>
+    <h2>Tick phases</h2>
     <p><em>See the <a href="ticks">tick phase</a> page.</em></p>
     <p>Pistons start their push in the block event phase. If a piston becomes powered or unpowered outside of the block event phase (as is usually the case), it will wait until the next block event phase to do its action.</p>
     <p>This sometimes results in strange behaviour. For example, if a piston is powered <em>after</em> the block event phase, such as by an entity, it will wait until the next tick to fire.</p>
     <p>On the other hand, pistons end their push in the block entity phase, which occurs after the block event phase. This means that if you power a piston with another piston (such as by moving a redstone block into it), it will only fire the next game tick.</p>
 
-    <h3>Push order</h3>
+    <h2>Push order</h2>
     <p>Piston push order is complex for large slime structures, and can be directional.</p>
     <p>However, as a rule of thumb, pistons push blocks in rows. The first block to be moved is the one farther along the direction of motion.</p>
     <p>For example, if a piston is pushing a row of blocks, the block farthest from the piston will be moved first (in the same tick). Similarly, a piston pulling a row of blocks will move the block closest to it first.</p>

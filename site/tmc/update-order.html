@@ -11,21 +11,27 @@
     <hr>
     <p>Update order refers to the order in which blocks are updated by a particular event. See the <a href="updates">updates</a> page if you don't know what a block/shape update is.</p>
     <p>The order of updates is as follows: shape updates occur in the order <strong>-x +x -z +z -y +y</strong>. Block updates occur in the order <strong>-x +x -y +y -z +z</strong>.</p>
+    
     <h2>Update chaining</h2>
     <p>The more complex aspects of update order come from the chaining of updates. Updates are propagated recursively, <em>depth-first</em>.</p>
     <p>As an example: suppose that a block is placed. It will update all blocks next to it, in the order specified above. But when it updates the block in a particular direction, it might cause something to happen: for example, a note block might fire. That thing will happen immediately, before the rest of the updates from the original source take place.</p>
+    
     <h2>Additional update order</h2>
     <p>Some blocks have update orders that are not sufficiently explained by the examples above. I'll try to list the below.</p>
-    <h4>Pistons</h4>
+    
+    <h3>Pistons</h3>
     <p>Pistons will update blocks around their head before they update blocks around their body. For the update order of the blocks pushed by a piston, refer to <a href="pistons">the piston page</a>. Note that the updates from the blocks occur after the updates from the piston head/body.</p>
-    <h4>Rails</h4>
+    
+    <h3>Rails</h3>
     <p>Powered and activator rails send updates around them when powered and depowered, but the range depends on their shape.</p>
     <p>Flat rails will update all blocks adjacent to them, as well as all blocks adjacent to the block under them. This is because rails one block below might connect upward, so they need to be notified.</p>
     <p>Slanted rails, meanwhile, update all of the blocks that a flat rail would, plus all blocks adjacent to the block above them.</p>
     <p>These can be thought of as different notifiers: one above (only for slanted rails), one at the rail, and one below the rail. Each notifier sends updates according to the normal order. The notifiers trigger from top to bottom.</p>
-    <h4>Redstone Dust</h4>
+    
+    <h3>Redstone Dust</h3>
     <p>Redstone dust update order is fairly complicated, but the main problem is that the exact update order depends on the location of the dust. Do not rely on dust update order unless you want your device to only work in a specific set of locations. (I may make an article explaining locationality eventually; in the meantime, both Heppe and earthcomputer have videos explaining it on YouTube.)</p>
-    <h4>Redstone Torches</h4>
+    
+    <h3>Redstone Torches</h3>
     <p>Torches update all blocks within 2 taxicab distance (i.e. you can get to them from the torch, by moving to an adjacent block twice or less). This can be thought of as seven different notifiers, with one on the torch itself and six on the adjacent blocks. Each updater sends updates according to the usual order, but they are created in the following order: <strong>-y +y -z +z -x +x center</strong>. Note that this means several blocks will be updated more than once. Usually this doesn't matter, but do keep this in mind when figuring out which blocks are updated when.</p>
     <hr>
     <p>Return to <a href="../tmc">home</a>.</p>
