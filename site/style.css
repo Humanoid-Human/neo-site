@@ -1,10 +1,14 @@
 :root {
-  --bg-color: #e9efec;
-  --text-color: #211e20;
-  --bg-accent-color: #c9d8ba;
-  --link-color: #4C5E4A;
-  --link-visited-color: #565B48;
-  --link-hover-color: #F45363;
+  --bg-color: #002b36;
+  --bg-accent-color: #073642;
+  
+  --text-color: #93a1a1;
+  --dark-accent-color: #859900;
+  --bright-accent-color: #d33682;
+
+  --link-color: #268bd2;
+  --link-visited-color: #6c71c4;
+  --link-hover-color: #2aa198;
 }
 
 @font-face {
@@ -43,8 +47,14 @@ h1, h2, h3 {
   font-family: serif;
 }
 
+hr {
+  color: var(--dark-accent-color);
+}
+
 .box {
   background: var(--bg-accent-color);
+  border: none;
+  border-left: 4px var(--bright-accent-color);
   padding: 20px;
   padding-top: 5px;
   margin: 40px;
